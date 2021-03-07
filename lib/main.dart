@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:webhook_deploy_panel/screens/home/home_screen.dart';
+import 'package:webhook_deploy_panel/screens/sing_in/sing_in_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.redAccent,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeScreen(),
+      home: SingInScreen(),
     );
   }
 }
