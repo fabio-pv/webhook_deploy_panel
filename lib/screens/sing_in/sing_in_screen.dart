@@ -6,7 +6,11 @@ class SingInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: BaseScreenWidget(
-        body: Container(),
+        body: Container(
+          child: Center(
+            child: SelectableText('In Development'),
+          ),
+        ),
       ),
     );
   }
