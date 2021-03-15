@@ -5,10 +5,24 @@ import 'package:webhook_deploy_panel/widgets/form_default/form_default_widget.da
 import 'package:webhook_deploy_panel/widgets/text_field_default/text_field_default_widget.dart';
 
 class FormSingInScreen extends StatelessWidget {
+  GlobalKey<FormBuilderState> _formKey;
+
+  void validateForm() {
+    final form = this._formKey.currentState;
+    if (!form.saveAndValidate()) {
+      return;
+    }
+
+    print('validateForm');
+    print(form.value);
+  }
+
   @override
   Widget build(BuildContext context) {
     return FormDefaultWidget(
-      formKey: (formKey) {},
+      formKey: (formKey) {
+        this._formKey = formKey;
+      },
       children: [
         TextFieldDefaultWidget(
           name: 'email',
@@ -23,7 +37,6 @@ class FormSingInScreen extends StatelessWidget {
           label: 'Senha',
           validators: [
             FormBuilderValidators.required(context),
-            FormBuilderValidators.email(context),
           ],
         ),
         SizedBox(
@@ -31,6 +44,7 @@ class FormSingInScreen extends StatelessWidget {
         ),
         ButtonDefaultWidget(
           text: 'Entrar',
+          onPressed: this.validateForm,
         ),
       ],
     );

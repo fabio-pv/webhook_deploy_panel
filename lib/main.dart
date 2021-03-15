@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.grey[800],
         dialogBackgroundColor: Colors.grey[800],
         scaffoldBackgroundColor: Colors.grey[800],
+        errorColor: Colors.redAccent,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: SingInScreen(),

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class ButtonDefaultWidget extends StatelessWidget {
   final String text;
+  final Function onPressed;
 
   ButtonDefaultWidget({
     @required this.text,
+    this.onPressed,
   });
 
   @override
@@ -13,7 +15,7 @@ class ButtonDefaultWidget extends StatelessWidget {
       width: double.maxFinite,
       child: OutlinedButton(
         child: Text(this.text.toUpperCase()),
-        onPressed: () {},
+        onPressed: this.onPressed,
         style: OutlinedButton.styleFrom(
           primary: Theme.of(context).accentColor,
           padding: EdgeInsets.all(20.0),

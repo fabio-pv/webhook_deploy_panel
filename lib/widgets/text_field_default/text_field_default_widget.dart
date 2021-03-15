@@ -70,6 +70,18 @@ class _TextFieldDefaultWidgetState extends State<TextFieldDefaultWidget> {
               width: 2.0,
             ),
           ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Theme.of(context).errorColor,
+              width: 2.0,
+            ),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Theme.of(context).errorColor,
+              width: 2.0,
+            ),
+          ),
         ),
         onChanged: this.widget.onChanged,
         validator: FormBuilderValidators.compose(
