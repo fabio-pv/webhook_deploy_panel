@@ -1,14 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:webhook_deploy_panel/screens/sing_in/form_sing_in_screen.dart';
 import 'package:webhook_deploy_panel/widgets/base_screen/base_screen_widget.dart';
+import 'package:webhook_deploy_panel/widgets/card_default/card_default_widget.dart';
+import 'package:webhook_deploy_panel/widgets/sized_box_default/sized_box_default_widget.dart';
+import 'package:webhook_deploy_panel/widgets/typography_default/sub_title_typography_default.dart';
+import 'package:webhook_deploy_panel/widgets/typography_default/title_typography_default.dart';
 
 class SingInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: BaseScreenWidget(
-        body: Container(
-          child: Center(
-            child: SelectableText('In Development'),
+        body: Center(
+          child: CardDefaultWidget(
+            child: Container(
+              width: 400,
+              height: 400,
+              padding: EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  TitleTypographyDefault(
+                    title: 'Webhook Deploy',
+                  ),
+                  SubTitleTypographyDefault(
+                    title: 'Use your account to access',
+                  ),
+                  SizedBoxDefaultWidget(),
+                  Expanded(
+                    child: Container(),
+                  ),
+                  FormSingInScreen(),
+                ],
+              ),
+            ),
           ),
         ),
       ),

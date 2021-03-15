@@ -12,9 +12,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Webhook Deploy Panel',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        primaryColor: Colors.blue,
-        accentColor: Colors.redAccent,
+        primarySwatch: Colors.grey,
+        primaryColor: Colors.grey,
+        accentColor: Colors.cyanAccent,
+        backgroundColor: Colors.grey[800],
+        dialogBackgroundColor: Colors.grey[800],
+        scaffoldBackgroundColor: Colors.grey[800],
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: SingInScreen(),
