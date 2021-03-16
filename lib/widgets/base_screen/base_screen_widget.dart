@@ -9,8 +9,9 @@ class BaseScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: this.body,
+    return SafeArea(child: Scaffold(
+        body: this.body,
+      ),
     );
   }
 }

@@ -43,7 +43,7 @@ class _TextFieldDefaultWidgetState extends State<TextFieldDefaultWidget> {
     });
 
     return Container(
-      margin: this.widget.margin,
+      height: 80,
       child: FormBuilderTextField(
         focusNode: this._focusNode,
         name: this.widget.name,
