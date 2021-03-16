@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:webhook_deploy_panel/controllers/user_controller.dart';
 import 'package:webhook_deploy_panel/providers/sing_in_provider.dart';
 import 'package:webhook_deploy_panel/screens/sing_in/form_sing_in_screen.dart';
 import 'package:webhook_deploy_panel/widgets/base_screen/base_screen_widget.dart';
@@ -7,10 +8,23 @@ import 'package:webhook_deploy_panel/widgets/sized_box_default/sized_box_default
 import 'package:webhook_deploy_panel/widgets/typography_default/sub_title_typography_default.dart';
 import 'package:webhook_deploy_panel/widgets/typography_default/title_typography_default.dart';
 
-class SingInScreen extends StatelessWidget {
-  Future<void> _doSingIn(Object form) {
+class SingInScreen extends StatefulWidget {
+  @override
+  _SingInScreenState createState() => _SingInScreenState(
+        userController: new UserController(),
+      );
+}
+
+class _SingInScreenState extends State<SingInScreen> {
+  final UserController userController;
+
+  _SingInScreenState({
+    @required this.userController,
+  });
+
+  Future<void> _doSingIn(Object form) async {
     try {
-      print(form);
+      await this.userController.test(form);
       return null;
     } catch (e) {
       rethrow;
