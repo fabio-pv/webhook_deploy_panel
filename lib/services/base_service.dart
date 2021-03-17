@@ -26,27 +26,43 @@ abstract class BaseService {
     this._dio = new Dio(this._baseOptions);
   }
 
-  void post({
+  Future<dynamic> get({
+    String endpoint,
+    bool auth = true,
+  }) async {
+    try {
+      Response response = await this._dio.get(
+            this._getEndpoint(endpoint),
+          );
+
+      return response.data;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<dynamic> post({
     String endpoint,
     Object data,
     bool auth = true,
   }) async {
     try {
-      this._getEndpoint(endpoint);
-      return;
-      this._dio.post(
-        this._getEndpoint(endpoint)
-      );
+      Response response = await this._dio.post(
+            this._getEndpoint(endpoint),
+            data: data,
+          );
 
+      return response.data;
     } catch (e) {
       rethrow;
     }
   }
 
   String _getEndpoint(String endpointOnMethod) {
+    if (endpointOnMethod == null) {
+      return this.baseEndpoint;
+    }
 
-    print(this.baseEndpoint == null);
-
+    return endpointOnMethod;
   }
-
 }

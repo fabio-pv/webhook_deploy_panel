@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:webhook_deploy_panel/controllers/auth_controller.dart';
-import 'package:webhook_deploy_panel/controllers/user_controller.dart';
 import 'package:webhook_deploy_panel/providers/sing_in_provider.dart';
+import 'package:webhook_deploy_panel/screens/home/home_screen.dart';
 import 'package:webhook_deploy_panel/screens/sing_in/form_sing_in_screen.dart';
 import 'package:webhook_deploy_panel/widgets/base_screen/base_screen_widget.dart';
 import 'package:webhook_deploy_panel/widgets/card_default/card_default_widget.dart';
@@ -23,12 +23,27 @@ class _SingInScreenState extends State<SingInScreen> {
     @required this.authController,
   });
 
+  bool _inLoad = false;
+
   Future<void> _doSingIn(Object form) async {
     try {
-      this.authController.doLogin(form);
-      return null;
+      setState(() {
+        this._inLoad = true;
+      });
+
+      await this.authController.doLogin(form);
+
+      Navigator.pop(context);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => HomeScreen(),
+        ),
+      );
     } catch (e) {
-      rethrow;
+      setState(() {
+        this._inLoad = false;
+      });
     }
   }
 
@@ -36,6 +51,7 @@ class _SingInScreenState extends State<SingInScreen> {
   Widget build(BuildContext context) {
     return SingInProvider(
       doSingIn: this._doSingIn,
+      inLoad: this._inLoad,
       child: BaseScreenWidget(
         body: Center(
           child: CardDefaultWidget(

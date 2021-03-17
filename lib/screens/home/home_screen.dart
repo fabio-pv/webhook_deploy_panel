@@ -1,23 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:webhook_deploy_panel/widgets/base_screen/base_screen_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        width: double.maxFinite,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(Icons.code),
-            Text(
-              'In Development...',
-              style: Theme.of(context).textTheme.headline6,
-            ),
-          ],
-        ),
-      ),
+    return BaseScreenWidget(
+      body: Container(),
     );
   }
 }

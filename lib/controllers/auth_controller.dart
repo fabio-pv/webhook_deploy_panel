@@ -10,11 +10,15 @@ class AuthController {
 
   Future<Token> doLogin(Object form) async {
     try {
+      final response = await this._authService.login(form);
 
-      await this._authService.login(form);
+      final token = Token.fromJson(response);
 
+      await this._authService.saveToken(token);
 
+      return token;
     } catch (e) {
+      print('doLogin - error');
       rethrow;
     }
   }
