@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:webhook_deploy_panel/controllers/auth_controller.dart';
 import 'package:webhook_deploy_panel/controllers/user_controller.dart';
 import 'package:webhook_deploy_panel/providers/sing_in_provider.dart';
 import 'package:webhook_deploy_panel/screens/sing_in/form_sing_in_screen.dart';
@@ -11,20 +12,20 @@ import 'package:webhook_deploy_panel/widgets/typography_default/title_typography
 class SingInScreen extends StatefulWidget {
   @override
   _SingInScreenState createState() => _SingInScreenState(
-        userController: new UserController(),
+        authController: new AuthController(),
       );
 }
 
 class _SingInScreenState extends State<SingInScreen> {
-  final UserController userController;
+  final AuthController authController;
 
   _SingInScreenState({
-    @required this.userController,
+    @required this.authController,
   });
 
   Future<void> _doSingIn(Object form) async {
     try {
-      await this.userController.test(form);
+      this.authController.doLogin(form);
       return null;
     } catch (e) {
       rethrow;

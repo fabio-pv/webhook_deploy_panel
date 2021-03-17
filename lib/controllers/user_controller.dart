@@ -1,8 +1,25 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
+import 'package:webhook_deploy_panel/services/user_service.dart';
 
 class UserController {
+  UserService _userService;
+
+  UserController() {
+    this._userService = new UserService(
+      endpoint: 'user',
+    );
+  }
+
+  Future<void> doLogin() async {
+    try{
+
+
+
+    }catch(e){
+      rethrow;
+    }
+  }
+
   void test(Object form) async {
     try {
       BaseOptions options = new BaseOptions(
