@@ -24,7 +24,11 @@ class MyApp extends StatelessWidget {
           errorColor: Colors.redAccent,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: SingInScreen(),
+        initialRoute: SingInScreen.ROUTE,
+        routes: {
+          SingInScreen.ROUTE: (context) => SingInScreen(),
+          HomeScreen.ROUTE: (context) => HomeScreen(),
+        },
       ),
     );
   }

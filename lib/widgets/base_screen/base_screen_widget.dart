@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:webhook_deploy_panel/widgets/header/header_widget.dart';
 
 class BaseScreenWidget extends StatelessWidget {
   final Widget body;
@@ -11,7 +12,9 @@ class BaseScreenWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: this.body,
+        body: HeaderWidget(
+          child: this.body,
+        ),
       ),
     );
   }

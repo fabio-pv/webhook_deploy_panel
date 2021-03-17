@@ -10,6 +10,8 @@ import 'package:webhook_deploy_panel/widgets/typography_default/sub_title_typogr
 import 'package:webhook_deploy_panel/widgets/typography_default/title_typography_default.dart';
 
 class SingInScreen extends StatefulWidget {
+  static const ROUTE = 'sing-in';
+
   @override
   _SingInScreenState createState() => _SingInScreenState(
         authController: new AuthController(),
@@ -34,12 +36,7 @@ class _SingInScreenState extends State<SingInScreen> {
       await this.authController.doLogin(form);
 
       Navigator.pop(context);
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (BuildContext context) => HomeScreen(),
-        ),
-      );
+      Navigator.pushNamed(context, HomeScreen.ROUTE);
     } catch (e) {
       setState(() {
         this._inLoad = false;
