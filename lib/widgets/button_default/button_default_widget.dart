@@ -17,9 +17,7 @@ class ButtonDefaultWidget extends StatelessWidget {
       width: (!this.inLoad ? double.maxFinite : null),
       child: (() {
         if (this.inLoad) {
-          return (CircularProgressIndicator(
-            color: Theme.of(context).accentColor,
-          ));
+          return (CircularProgressIndicator());
         }
         return (OutlinedButton(
           child: Text(
@@ -27,14 +25,10 @@ class ButtonDefaultWidget extends StatelessWidget {
           ),
           onPressed: this.onPressed,
           style: OutlinedButton.styleFrom(
-            primary: Theme
-                .of(context)
-                .accentColor,
+            primary: Theme.of(context).accentColor,
             padding: EdgeInsets.all(20.0),
             side: BorderSide(
-              color: Theme
-                  .of(context)
-                  .accentColor,
+              color: Theme.of(context).accentColor,
               width: 2,
             ),
           ),

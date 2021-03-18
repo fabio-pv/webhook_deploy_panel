@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:webhook_deploy_panel/models/token.dart';
+import 'package:webhook_deploy_panel/services/auth_service.dart';
 
 abstract class BaseService {
-  final String baseEndpoint;
+  String baseEndpoint;
 
   BaseOptions _baseOptions;
   Dio _dio;
@@ -31,7 +35,13 @@ abstract class BaseService {
     bool auth = true,
   }) async {
     try {
-      Response response = await this._dio.get(
+      Token token = await AuthService.getToken();
+
+      this._baseOptions.headers = {
+        "Authorization": "Bearer ${token.accessToken}"
+      };
+
+      final response = await this._dio.get(
             this._getEndpoint(endpoint),
           );
 

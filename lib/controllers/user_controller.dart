@@ -5,17 +5,11 @@ class UserController {
   UserService _userService;
 
   UserController() {
-    this._userService = new UserService(
-      endpoint: 'user',
-    );
+    this._userService = new UserService();
   }
 
   Future<void> doLogin() async {
-    try{
-
-
-
-    }catch(e){
+    try {} catch (e) {
       rethrow;
     }
   }

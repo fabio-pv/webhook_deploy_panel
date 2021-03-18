@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:webhook_deploy_panel/controllers/auth_controller.dart';
 import 'package:webhook_deploy_panel/providers/sing_in_provider.dart';
-import 'package:webhook_deploy_panel/screens/home/home_screen.dart';
+import 'package:webhook_deploy_panel/screens/project/project_screen.dart';
 import 'package:webhook_deploy_panel/screens/sing_in/form_sing_in_screen.dart';
 import 'package:webhook_deploy_panel/widgets/base_screen/base_screen_widget.dart';
 import 'package:webhook_deploy_panel/widgets/card_default/card_default_widget.dart';
@@ -10,7 +10,7 @@ import 'package:webhook_deploy_panel/widgets/typography_default/sub_title_typogr
 import 'package:webhook_deploy_panel/widgets/typography_default/title_typography_default.dart';
 
 class SingInScreen extends StatefulWidget {
-  static const ROUTE = 'sing-in';
+  static const ROUTE = '/';
 
   @override
   _SingInScreenState createState() => _SingInScreenState(
@@ -36,7 +36,7 @@ class _SingInScreenState extends State<SingInScreen> {
       await this.authController.doLogin(form);
 
       Navigator.pop(context);
-      Navigator.pushNamed(context, HomeScreen.ROUTE);
+      Navigator.pushNamed(context, ProjectScreen.ROUTE);
     } catch (e) {
       setState(() {
         this._inLoad = false;

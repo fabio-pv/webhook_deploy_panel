@@ -18,7 +18,6 @@ class AuthController {
 
       return token;
     } catch (e) {
-      print('doLogin - error');
       rethrow;
     }
   }

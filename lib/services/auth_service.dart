@@ -4,6 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webhook_deploy_panel/models/token.dart';
 import 'package:webhook_deploy_panel/services/base_service.dart';
 
+import '../models/token.dart';
+
 class AuthService extends BaseService {
   Future<dynamic> login(Object form) async {
     try {
@@ -27,12 +29,14 @@ class AuthService extends BaseService {
   }
 
   static Future<Token> getToken() async {
-    try{
+    try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       final tokenString = prefs.getString('@token');
 
-      print(tokenString);
-    }catch(e){
+      Token token = Token.fromJson(jsonDecode(tokenString));
+
+      return token;
+    } catch (e) {
       rethrow;
     }
   }
