@@ -15,9 +15,15 @@ class ListProject extends StatelessWidget {
     return Container(
       child: Expanded(
         flex: 1,
-        child: ListView.builder(
+        child: GridView.builder(
           shrinkWrap: true,
           itemCount: this.list.length,
+          padding: EdgeInsets.only(
+            top: 100,
+          ),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 4,
+          ),
           itemBuilder: (BuildContext context, int index) {
             return ItemListProject(
               project: this.list[index],

@@ -45,14 +45,12 @@ class _ProjectScreenState extends State<ProjectScreen> {
   Widget build(BuildContext context) {
     return BaseScreenWidget(
       pageName: 'Projects',
-      body: Container(
-        child: Column(
-          children: [
-            ListProject(
-              list: this._listProject,
-            ),
-          ],
-        ),
+      body: Column(
+        children: [
+          ListProject(
+            list: this._listProject,
+          ),
+        ],
       ),
     );
   }
