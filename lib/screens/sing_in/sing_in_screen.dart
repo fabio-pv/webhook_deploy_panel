@@ -50,6 +50,7 @@ class _SingInScreenState extends State<SingInScreen> {
       doSingIn: this._doSingIn,
       inLoad: this._inLoad,
       child: BaseScreenWidget(
+        removeAppbar: true,
         body: Center(
           child: CardDefaultWidget(
             child: Container(

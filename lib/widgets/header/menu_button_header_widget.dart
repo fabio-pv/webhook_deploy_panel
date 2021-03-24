@@ -11,10 +11,10 @@ class MenuButtonHeaderWidget extends StatelessWidget {
       ),
       padding: EdgeInsets.all(15.0),
       shape: CircleBorder(
-        side: BorderSide(
+        /*side: BorderSide(
           color: Theme.of(context).accentColor,
           width: 2,
-        ),
+        ),*/
       ),
     );
   }

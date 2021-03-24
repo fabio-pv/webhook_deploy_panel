@@ -41,10 +41,13 @@ class _ProjectScreenState extends State<ProjectScreen> {
     }
   }
 
+  void _addProject() async {}
+
   @override
   Widget build(BuildContext context) {
     return BaseScreenWidget(
       pageName: 'Projects',
+      floatingActionButtonPress: this._addProject,
       body: Column(
         children: [
           ListProject(

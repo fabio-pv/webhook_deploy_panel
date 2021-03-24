@@ -8,45 +8,73 @@ import '../header/title_header_widget.dart';
 
 class BaseScreenWidget extends StatelessWidget {
   static const defaultPaddingBody = EdgeInsets.only(
-    left: 40.0,
-    right: 40.0,
+    left: 100.0,
+    right: 100.0,
   );
 
   final Widget body;
   final String pageName;
   final EdgeInsets paddingBody;
+  final bool removeAppbar;
+  final Function floatingActionButtonPress;
 
   BaseScreenWidget({
     @required this.body,
     this.pageName = '???',
     this.paddingBody = defaultPaddingBody,
+    this.removeAppbar = false,
+    this.floatingActionButtonPress,
   });
+
+  BuildContext _contextAux;
+
+  _getAppBar() {
+    if (this.removeAppbar) {
+      return null;
+    }
+
+    return HeaderWidget();
+  }
+
+  _getBody() {
+    return Container(
+      padding: this.paddingBody,
+      child: this.body,
+    );
+  }
+
+  _getFloatingActionButton() {
+    if (this.floatingActionButtonPress == null) {
+      return null;
+    }
+
+    return FloatingActionButton(
+      onPressed: this.floatingActionButtonPress,
+      backgroundColor: Theme.of(this._contextAux).backgroundColor,
+      elevation: 0,
+      shape: CircleBorder(
+        side: BorderSide(
+          color: Theme.of(this._contextAux).accentColor,
+          width: 2,
+        ),
+      ),
+      child: Icon(
+        Icons.add,
+        color: Theme.of(this._contextAux).accentColor,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    this._contextAux = context;
     return BaseScreenProvider(
       pageName: this.pageName,
       child: SafeArea(
         child: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(100.0),
-            child: Container(
-              width: double.maxFinite,
-              height: 80,
-              padding: EdgeInsets.all(10.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  MenuButtonHeaderWidget(),
-                  TitleHeaderWidget(),
-                ],
-              ),
-            ),
-          ),
-          body: Container(
-            padding: this.paddingBody,
-            child: this.body,
-          ),
+          appBar: this._getAppBar(),
+          body: this._getBody(),
+          floatingActionButton: this._getFloatingActionButton(),
         ),
       ),
     );
