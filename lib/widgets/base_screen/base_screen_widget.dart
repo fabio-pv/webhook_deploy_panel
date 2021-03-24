@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:webhook_deploy_panel/providers/base_screen_provider.dart';
+import 'package:webhook_deploy_panel/widgets/base_screen/modal/modal_base_screen_widget.dart';
 import 'package:webhook_deploy_panel/widgets/header/header_widget.dart';
 
 import '../header/menu_button_header_widget.dart';
@@ -17,6 +20,9 @@ class BaseScreenWidget extends StatelessWidget {
   final EdgeInsets paddingBody;
   final bool removeAppbar;
   final Function floatingActionButtonPress;
+  final String tooltipFloatingActionButtonPress;
+  final bool openModal;
+  final Widget contentModal;
 
   BaseScreenWidget({
     @required this.body,
@@ -24,6 +30,9 @@ class BaseScreenWidget extends StatelessWidget {
     this.paddingBody = defaultPaddingBody,
     this.removeAppbar = false,
     this.floatingActionButtonPress,
+    this.tooltipFloatingActionButtonPress,
+    this.openModal = false,
+    this.contentModal,
   });
 
   BuildContext _contextAux;
@@ -52,6 +61,7 @@ class BaseScreenWidget extends StatelessWidget {
       onPressed: this.floatingActionButtonPress,
       backgroundColor: Theme.of(this._contextAux).backgroundColor,
       elevation: 0,
+      tooltip: this.tooltipFloatingActionButtonPress ?? 'Create',
       shape: CircleBorder(
         side: BorderSide(
           color: Theme.of(this._contextAux).accentColor,
@@ -70,11 +80,18 @@ class BaseScreenWidget extends StatelessWidget {
     this._contextAux = context;
     return BaseScreenProvider(
       pageName: this.pageName,
+      openModal: this.openModal,
+      contentModal: this.contentModal,
       child: SafeArea(
-        child: Scaffold(
-          appBar: this._getAppBar(),
-          body: this._getBody(),
-          floatingActionButton: this._getFloatingActionButton(),
+        child: Stack(
+          children: [
+            Scaffold(
+              appBar: this._getAppBar(),
+              body: this._getBody(),
+              floatingActionButton: this._getFloatingActionButton(),
+            ),
+            ModalBaseScreenWidget(),
+          ],
         ),
       ),
     );

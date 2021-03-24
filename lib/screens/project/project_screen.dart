@@ -22,6 +22,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
   });
 
   List<Project> _listProject = [];
+  bool openModal = false;
 
   @override
   void initState() {
@@ -41,13 +42,18 @@ class _ProjectScreenState extends State<ProjectScreen> {
     }
   }
 
-  void _addProject() async {}
+  void _addProject() async {
+    setState(() {
+      this.openModal = !this.openModal;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return BaseScreenWidget(
       pageName: 'Projects',
       floatingActionButtonPress: this._addProject,
+      openModal: this.openModal,
       body: Column(
         children: [
           ListProject(
