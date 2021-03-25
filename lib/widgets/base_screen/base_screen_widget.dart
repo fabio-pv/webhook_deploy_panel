@@ -46,9 +46,14 @@ class BaseScreenWidget extends StatelessWidget {
   }
 
   _getBody() {
-    return Container(
-      padding: this.paddingBody,
-      child: this.body,
+    return Stack(
+      children: [
+        Container(
+          padding: this.paddingBody,
+          child: this.body,
+        ),
+        ModalBaseScreenWidget(),
+      ],
     );
   }
 
@@ -83,17 +88,11 @@ class BaseScreenWidget extends StatelessWidget {
       openModal: this.openModal,
       contentModal: this.contentModal,
       child: SafeArea(
-        child: Stack(
-          children: [
-            Scaffold(
-              appBar: this._getAppBar(),
-              body: this._getBody(),
-              floatingActionButton: this._getFloatingActionButton(),
-            ),
-            ModalBaseScreenWidget(),
-          ],
-        ),
-      ),
+          child: Scaffold(
+        appBar: this._getAppBar(),
+        body: this._getBody(),
+        floatingActionButton: this._getFloatingActionButton(),
+      )),
     );
   }
 }

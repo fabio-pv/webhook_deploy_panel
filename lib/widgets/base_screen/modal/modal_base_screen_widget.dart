@@ -14,8 +14,8 @@ class ModalBaseScreenWidget extends StatelessWidget {
       children: [
         BackdropFilter(
           filter: ImageFilter.blur(
-            sigmaX: 4,
-            sigmaY: 4,
+            sigmaX: 8,
+            sigmaY: 8,
           ),
           child: Container(
             color: Colors.black.withOpacity(0),
@@ -23,15 +23,7 @@ class ModalBaseScreenWidget extends StatelessWidget {
         ),
         Align(
           alignment: Alignment.center,
-          child: Container(
-            width: 500,
-            height: 400,
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColorDark,
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            child: BaseScreenProvider.of(context).contentModal,
-          ),
+          child: BaseScreenProvider.of(context).contentModal,
         ),
       ],
     );
