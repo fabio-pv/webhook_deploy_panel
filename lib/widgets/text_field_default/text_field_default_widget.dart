@@ -12,6 +12,7 @@ class TextFieldDefaultWidget extends StatefulWidget {
   final List<String Function(String)> validators;
   final TextInputType textInputType;
   final EdgeInsets margin;
+  final bool obscureText;
 
   TextFieldDefaultWidget({
     @required this.name,
@@ -20,6 +21,7 @@ class TextFieldDefaultWidget extends StatefulWidget {
     this.onChanged,
     this.textInputType,
     this.margin = marginDefault,
+    this.obscureText = false,
   });
 
   @override
@@ -45,6 +47,7 @@ class _TextFieldDefaultWidgetState extends State<TextFieldDefaultWidget> {
     return Container(
       height: 80,
       child: FormBuilderTextField(
+        obscureText: widget.obscureText,
         focusNode: this._focusNode,
         name: this.widget.name,
         cursorColor: Theme.of(context).accentColor,

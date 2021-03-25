@@ -39,6 +39,7 @@ class _FormSingInScreenState extends State<FormSingInScreen> {
           TextFieldDefaultWidget(
             name: 'password',
             label: 'Senha',
+            obscureText: true,
             validators: [
               FormBuilderValidators.required(context),
             ],
