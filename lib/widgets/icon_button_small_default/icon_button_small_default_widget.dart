@@ -25,7 +25,7 @@ class IconButtonSmallDefaultWidget extends StatelessWidget {
         this.icon,
         color: Theme.of(context).accentColor,
       ),
-      onPressed: () {},
+      onPressed: this.onPressed,
     );
   }
 }

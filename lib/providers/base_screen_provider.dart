@@ -4,12 +4,16 @@ class BaseScreenProvider extends InheritedWidget {
   final String pageName;
   final bool openModal;
   final Widget contentModal;
+  final bool openAlertModal;
+  final Widget contentAlertModal;
 
   BaseScreenProvider({
     @required Widget child,
     @required this.pageName,
     @required this.openModal,
     @required this.contentModal,
+    @required this.openAlertModal,
+    @required this.contentAlertModal,
   }) : super(child: child);
 
   @override

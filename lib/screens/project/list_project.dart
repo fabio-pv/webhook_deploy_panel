@@ -23,7 +23,11 @@ class ListProject extends StatelessWidget {
             top: 100,
           ),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4, childAspectRatio: 2.0),
+            crossAxisCount: 4,
+            childAspectRatio: 2.0,
+            crossAxisSpacing: 10.0,
+            mainAxisSpacing: 10.0
+          ),
           itemBuilder: (BuildContext context, int index) {
             return ItemListProject(
               project: this.list[index],

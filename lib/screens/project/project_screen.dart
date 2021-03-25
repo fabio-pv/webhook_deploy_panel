@@ -24,7 +24,8 @@ class _ProjectScreenState extends State<ProjectScreen> {
   });
 
   List<Project> _listProject = [];
-  bool openModal = false;
+  bool _openModal = false;
+  bool _openAlertModal = false;
 
   @override
   void initState() {
@@ -44,9 +45,9 @@ class _ProjectScreenState extends State<ProjectScreen> {
     }
   }
 
-  void _addProject() async {
+  void _addProject() {
     setState(() {
-      this.openModal = !this.openModal;
+      this._openModal = !this._openModal;
     });
   }
 
@@ -61,16 +62,28 @@ class _ProjectScreenState extends State<ProjectScreen> {
     }
   }
 
+  void _deleteProject() {
+    print(22222);
+    setState(() {
+      this._openAlertModal = !this._openAlertModal;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ProjectProvider(
       addProject: this._addProject,
       doCreateProject: this._doCreateProject,
+      deleteProject: this._deleteProject,
       child: BaseScreenWidget(
         pageName: 'Projects',
         floatingActionButtonPress: this._addProject,
-        openModal: this.openModal,
+        openModal: this._openModal,
         contentModal: ContentModalProject(),
+        openAlertModal: this._openAlertModal,
+        contentAlerModal: Container(
+          child: Text('321321321'),
+        ),
         body: Column(
           children: [
             ListProject(

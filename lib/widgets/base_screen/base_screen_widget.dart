@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:webhook_deploy_panel/providers/base_screen_provider.dart';
+import 'package:webhook_deploy_panel/widgets/base_screen/modal/alert_base_screen_widget.dart';
 import 'package:webhook_deploy_panel/widgets/base_screen/modal/modal_base_screen_widget.dart';
 import 'package:webhook_deploy_panel/widgets/header/header_widget.dart';
 
@@ -23,6 +24,8 @@ class BaseScreenWidget extends StatelessWidget {
   final String tooltipFloatingActionButtonPress;
   final bool openModal;
   final Widget contentModal;
+  final bool openAlertModal;
+  final Widget contentAlerModal;
 
   BaseScreenWidget({
     @required this.body,
@@ -33,6 +36,8 @@ class BaseScreenWidget extends StatelessWidget {
     this.tooltipFloatingActionButtonPress,
     this.openModal = false,
     this.contentModal,
+    this.openAlertModal = false,
+    this.contentAlerModal,
   });
 
   BuildContext _contextAux;
@@ -53,6 +58,7 @@ class BaseScreenWidget extends StatelessWidget {
           child: this.body,
         ),
         ModalBaseScreenWidget(),
+        AlertBaseScreenWidget(),
       ],
     );
   }
@@ -87,12 +93,15 @@ class BaseScreenWidget extends StatelessWidget {
       pageName: this.pageName,
       openModal: this.openModal,
       contentModal: this.contentModal,
+      openAlertModal: this.openAlertModal,
+      contentAlertModal: this.contentAlerModal,
       child: SafeArea(
-          child: Scaffold(
-        appBar: this._getAppBar(),
-        body: this._getBody(),
-        floatingActionButton: this._getFloatingActionButton(),
-      )),
+        child: Scaffold(
+          appBar: this._getAppBar(),
+          body: this._getBody(),
+          floatingActionButton: this._getFloatingActionButton(),
+        ),
+      ),
     );
   }
 }
