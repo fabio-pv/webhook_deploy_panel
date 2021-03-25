@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:webhook_deploy_panel/providers/super_provider.dart';
 
-class SubTitleTypographyDefault extends StatelessWidget {
+class HeaderSubTitleTypographyDefault extends StatelessWidget {
   final String title;
 
-  SubTitleTypographyDefault({
+  HeaderSubTitleTypographyDefault({
     @required this.title,
   });
 
@@ -12,7 +12,7 @@ class SubTitleTypographyDefault extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       this.title,
-      style: Theme.of(context).textTheme.bodyText1.copyWith(
+      style: Theme.of(context).textTheme.headline6.copyWith(
             color: SuperProvider.of(context).subTitleColor,
           ),
     );

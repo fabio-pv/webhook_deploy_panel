@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:webhook_deploy_panel/controllers/auth_controller.dart';
 import 'package:webhook_deploy_panel/providers/sing_in_provider.dart';
+import 'package:webhook_deploy_panel/screens/project/project_screen.dart';
 import 'package:webhook_deploy_panel/screens/sing_in/form_sing_in_screen.dart';
 import 'package:webhook_deploy_panel/widgets/base_screen/base_screen_widget.dart';
 import 'package:webhook_deploy_panel/widgets/card_default/card_default_widget.dart';
@@ -7,13 +9,38 @@ import 'package:webhook_deploy_panel/widgets/sized_box_default/sized_box_default
 import 'package:webhook_deploy_panel/widgets/typography_default/sub_title_typography_default.dart';
 import 'package:webhook_deploy_panel/widgets/typography_default/title_typography_default.dart';
 
-class SingInScreen extends StatelessWidget {
-  Future<void> _doSingIn(Object form) {
+class SingInScreen extends StatefulWidget {
+  static const ROUTE = '/';
+
+  @override
+  _SingInScreenState createState() => _SingInScreenState(
+        authController: new AuthController(),
+      );
+}
+
+class _SingInScreenState extends State<SingInScreen> {
+  final AuthController authController;
+
+  _SingInScreenState({
+    @required this.authController,
+  });
+
+  bool _inLoad = false;
+
+  Future<void> _doSingIn(Object form) async {
     try {
-      print(form);
-      return null;
+      setState(() {
+        this._inLoad = true;
+      });
+
+      await this.authController.doLogin(form);
+
+      Navigator.pop(context);
+      Navigator.pushNamed(context, ProjectScreen.ROUTE);
     } catch (e) {
-      rethrow;
+      setState(() {
+        this._inLoad = false;
+      });
     }
   }
 
@@ -21,7 +48,9 @@ class SingInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingInProvider(
       doSingIn: this._doSingIn,
+      inLoad: this._inLoad,
       child: BaseScreenWidget(
+        removeAppbar: true,
         body: Center(
           child: CardDefaultWidget(
             child: Container(
