@@ -19,6 +19,11 @@ class ActionItemListProject extends StatelessWidget {
             onPressed: () {},
             icon: Icons.edit,
           ),
+          IconButtonSmallDefaultWidget(
+            tooltip: 'Delete',
+            onPressed: () {},
+            icon: Icons.delete,
+          ),
         ],
       ),
     );

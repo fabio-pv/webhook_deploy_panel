@@ -20,7 +20,7 @@ class IconButtonSmallDefaultWidget extends StatelessWidget {
         right: 10,
       ),
       constraints: BoxConstraints(),
-      tooltip: 'Edit',
+      tooltip: this.tooltip,
       icon: Icon(
         this.icon,
         color: Theme.of(context).accentColor,

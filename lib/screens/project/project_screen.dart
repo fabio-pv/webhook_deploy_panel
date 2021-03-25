@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:webhook_deploy_panel/controllers/project_controller.dart';
+import 'package:webhook_deploy_panel/providers/project_provider.dart';
 import 'package:webhook_deploy_panel/screens/project/content_modal_project.dart';
 import 'package:webhook_deploy_panel/screens/project/list_project.dart';
 import 'package:webhook_deploy_panel/widgets/base_screen/base_screen_widget.dart';
@@ -49,19 +50,34 @@ class _ProjectScreenState extends State<ProjectScreen> {
     });
   }
 
+  Future<void> _doCreateProject(Object form) async {
+    try {
+      Project project = await this.projectController.doCreate(form);
+
+      this._addProject();
+      this._load();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BaseScreenWidget(
-      pageName: 'Projects',
-      floatingActionButtonPress: this._addProject,
-      openModal: this.openModal,
-      contentModal: ContentModalProject(),
-      body: Column(
-        children: [
-          ListProject(
-            list: this._listProject,
-          ),
-        ],
+    return ProjectProvider(
+      addProject: this._addProject,
+      doCreateProject: this._doCreateProject,
+      child: BaseScreenWidget(
+        pageName: 'Projects',
+        floatingActionButtonPress: this._addProject,
+        openModal: this.openModal,
+        contentModal: ContentModalProject(),
+        body: Column(
+          children: [
+            ListProject(
+              list: this._listProject,
+            ),
+          ],
+        ),
       ),
     );
   }

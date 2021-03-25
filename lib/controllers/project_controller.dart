@@ -32,4 +32,18 @@ class ProjectController {
       rethrow;
     }
   }
+
+  Future<Project> doCreate(Object form) async {
+    try {
+      final response = await this._projectService.post(
+            data: form,
+          );
+
+      Project project = Project.fromJson(response);
+
+      return project;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

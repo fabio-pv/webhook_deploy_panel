@@ -6,9 +6,15 @@ import 'package:webhook_deploy_panel/widgets/typography_default/title_typography
 
 class SimpleModalWidget extends StatelessWidget {
   final List<Widget> child;
+  final Function closeModal;
+  final Function onPressSave;
+  final Function onPressCancel;
 
   SimpleModalWidget({
     @required this.child,
+    this.closeModal,
+    this.onPressSave,
+    this.onPressCancel,
   });
 
   @override
@@ -36,7 +42,7 @@ class SimpleModalWidget extends StatelessWidget {
                   Icons.close_outlined,
                   color: Theme.of(context).accentColor,
                 ),
-                onPressed: () {},
+                onPressed: this.closeModal,
               ),
             ],
           ),
@@ -57,7 +63,7 @@ class SimpleModalWidget extends StatelessWidget {
                 width: 100,
                 child: FlatButtonDefaultWidget(
                   text: 'Cancel',
-                  onPressed: () {},
+                  onPressed: this.onPressCancel,
                 ),
               ),
               SizedBox(
@@ -67,7 +73,7 @@ class SimpleModalWidget extends StatelessWidget {
                 width: 100,
                 child: ButtonDefaultWidget(
                   text: 'Save',
-                  onPressed: () {},
+                  onPressed: this.onPressSave,
                 ),
               ),
             ],
