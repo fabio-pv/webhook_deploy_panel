@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:webhook_deploy_panel/controllers/project_controller.dart';
 import 'package:webhook_deploy_panel/providers/project_provider.dart';
+import 'package:webhook_deploy_panel/screens/project/content_alert_project.dart';
 import 'package:webhook_deploy_panel/screens/project/content_modal_project.dart';
 import 'package:webhook_deploy_panel/screens/project/list_project.dart';
 import 'package:webhook_deploy_panel/widgets/base_screen/base_screen_widget.dart';
@@ -63,10 +64,13 @@ class _ProjectScreenState extends State<ProjectScreen> {
   }
 
   void _deleteProject() {
-    print(22222);
     setState(() {
       this._openAlertModal = !this._openAlertModal;
     });
+  }
+
+  Future<void> _doDeleteProject() {
+    print('_doDeleteProject');
   }
 
   @override
@@ -75,15 +79,14 @@ class _ProjectScreenState extends State<ProjectScreen> {
       addProject: this._addProject,
       doCreateProject: this._doCreateProject,
       deleteProject: this._deleteProject,
+      doDeleteProject: this._doDeleteProject,
       child: BaseScreenWidget(
         pageName: 'Projects',
         floatingActionButtonPress: this._addProject,
         openModal: this._openModal,
         contentModal: ContentModalProject(),
         openAlertModal: this._openAlertModal,
-        contentAlerModal: Container(
-          child: Text('321321321'),
-        ),
+        contentAlerModal: ContentAlertProject(),
         body: Column(
           children: [
             ListProject(
