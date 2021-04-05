@@ -69,8 +69,16 @@ class _ProjectScreenState extends State<ProjectScreen> {
     });
   }
 
-  Future<void> _doDeleteProject() {
-    print('_doDeleteProject');
+  Future<void> _doDeleteProject(String uuid) async {
+    try {
+      print(uuid);
+      return;
+      Project project = await this.projectController.doDelete(uuid);
+
+      print(project);
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override

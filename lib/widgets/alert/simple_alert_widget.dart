@@ -13,9 +13,9 @@ class SimpleAlertWidget extends StatelessWidget {
   final String subTitle;
 
   SimpleAlertWidget({
-    @required this.child,
     @required this.title,
     @required this.subTitle,
+    this.child,
     this.closeModal,
     this.onPressSave,
     this.onPressCancel,

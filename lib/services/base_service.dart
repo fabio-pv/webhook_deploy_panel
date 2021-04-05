@@ -30,16 +30,36 @@ abstract class BaseService {
     this._dio = new Dio(this._baseOptions);
   }
 
+  String _getEndpoint(String endpointOnMethod) {
+    if (endpointOnMethod == null) {
+      return this.baseEndpoint;
+    }
+
+    return endpointOnMethod;
+  }
+
+  void _setToken({
+    bool auth = true,
+  }) async {
+    if (!auth) {
+      return;
+    }
+
+    Token token = await AuthService.getToken();
+
+    this._baseOptions.headers = {
+      "Authorization": "Bearer ${token.accessToken}"
+    };
+  }
+
   Future<dynamic> get({
     String endpoint,
     bool auth = true,
   }) async {
     try {
-      Token token = await AuthService.getToken();
-
-      this._baseOptions.headers = {
-        "Authorization": "Bearer ${token.accessToken}"
-      };
+      await this._setToken(
+        auth: auth,
+      );
 
       final response = await this._dio.get(
             this._getEndpoint(endpoint),
@@ -57,6 +77,10 @@ abstract class BaseService {
     bool auth = true,
   }) async {
     try {
+      await this._setToken(
+        auth: auth,
+      );
+
       Response response = await this._dio.post(
             this._getEndpoint(endpoint),
             data: data,
@@ -68,11 +92,29 @@ abstract class BaseService {
     }
   }
 
-  String _getEndpoint(String endpointOnMethod) {
-    if (endpointOnMethod == null) {
-      return this.baseEndpoint;
-    }
+  Future<dynamic> delete({
+    String endpoint,
+    bool auth = true,
+    String uuid,
+  }) async {
+    try {
+      await this._setToken(
+        auth: auth,
+      );
 
-    return endpointOnMethod;
+      endpoint = this._getEndpoint(endpoint);
+
+      if (uuid != null) {
+        endpoint += '/' + uuid;
+      }
+
+      final response = await this._dio.delete(
+            endpoint,
+          );
+
+      return response.data;
+    } catch (e) {
+      rethrow;
+    }
   }
 }

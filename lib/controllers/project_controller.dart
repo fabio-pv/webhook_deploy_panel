@@ -39,9 +39,19 @@ class ProjectController {
             data: form,
           );
 
-      Project project = Project.fromJson(response);
+      return Project.fromJson(response);
+    } catch (e) {
+      rethrow;
+    }
+  }
 
-      return project;
+  Future<Project> doDelete(String uuid) async {
+    try {
+      final response = await this._projectService.delete(
+            uuid: uuid,
+          );
+
+      return Project.fromJson(response);
     } catch (e) {
       rethrow;
     }
