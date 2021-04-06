@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:webhook_deploy_panel/providers/item_list_project_provider.dart';
 import 'package:webhook_deploy_panel/providers/project_provider.dart';
 import 'package:webhook_deploy_panel/widgets/icon_button_small_default/icon_button_small_default_widget.dart';
 
@@ -6,6 +7,7 @@ class ActionItemListProject extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final projectProvider = ProjectProvider.of(context);
+    final itemListProjectProvider = ItemListProjectProvider.of(context);
 
     return Container(
       width: double.maxFinite,
@@ -24,7 +26,11 @@ class ActionItemListProject extends StatelessWidget {
           ),
           IconButtonSmallDefaultWidget(
             tooltip: 'Delete',
-            onPressed: projectProvider.deleteProject,
+            onPressed: () {
+              projectProvider.deleteProject(
+                uuidSelect: itemListProjectProvider.project.uuid,
+              );
+            },
             icon: Icons.delete,
           ),
         ],

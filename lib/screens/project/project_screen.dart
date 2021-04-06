@@ -27,6 +27,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
   List<Project> _listProject = [];
   bool _openModal = false;
   bool _openAlertModal = false;
+  String _uuidSelect;
 
   @override
   void initState() {
@@ -63,19 +64,22 @@ class _ProjectScreenState extends State<ProjectScreen> {
     }
   }
 
-  void _deleteProject() {
+  void _deleteProject({
+    String uuidSelect,
+  }) {
+    print(this._openAlertModal);
     setState(() {
       this._openAlertModal = !this._openAlertModal;
+      this._uuidSelect = uuidSelect;
     });
   }
 
-  Future<void> _doDeleteProject(String uuid) async {
+  Future<void> _doDeleteProject() async {
     try {
-      print(uuid);
-      return;
-      Project project = await this.projectController.doDelete(uuid);
+      await this.projectController.doDelete(this._uuidSelect);
 
-      print(project);
+      this._load();
+      this._deleteProject();
     } catch (e) {
       rethrow;
     }
