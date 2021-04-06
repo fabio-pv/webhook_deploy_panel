@@ -67,7 +67,6 @@ class _ProjectScreenState extends State<ProjectScreen> {
   void _deleteProject({
     String uuidSelect,
   }) {
-    print(this._openAlertModal);
     setState(() {
       this._openAlertModal = !this._openAlertModal;
       this._uuidSelect = uuidSelect;
