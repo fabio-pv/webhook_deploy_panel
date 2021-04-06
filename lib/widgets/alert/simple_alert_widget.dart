@@ -11,6 +11,8 @@ class SimpleAlertWidget extends StatelessWidget {
   final Function onPressCancel;
   final String title;
   final String subTitle;
+  final String onPressSaveText;
+  final String onPressCancelText;
 
   SimpleAlertWidget({
     @required this.title,
@@ -19,6 +21,8 @@ class SimpleAlertWidget extends StatelessWidget {
     this.closeModal,
     this.onPressSave,
     this.onPressCancel,
+    this.onPressSaveText = 'Yes',
+    this.onPressCancelText = 'No',
   });
 
   @override
@@ -71,7 +75,7 @@ class SimpleAlertWidget extends StatelessWidget {
               Container(
                 width: 100,
                 child: FlatButtonDefaultWidget(
-                  text: 'Cancel',
+                  text: this.onPressCancelText,
                   onPressed: this.onPressCancel,
                 ),
               ),
@@ -81,7 +85,7 @@ class SimpleAlertWidget extends StatelessWidget {
               Container(
                 width: 100,
                 child: ButtonDefaultWidget(
-                  text: 'Save',
+                  text: this.onPressSaveText,
                   onPressed: this.onPressSave,
                 ),
               ),
