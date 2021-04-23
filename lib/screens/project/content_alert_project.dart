@@ -12,9 +12,15 @@ class ContentAlertProject extends StatelessWidget {
     return SimpleAlertWidget(
       title: 'Delete',
       subTitle: 'Do you want to remove the project?',
-      closeModal: projectProvider.deleteProject,
-      onPressCancel: projectProvider.deleteProject,
-      onPressSave: projectProvider.doDeleteProject,
+      closeModal: () {
+        projectProvider.deleteProject();
+      },
+      onPressCancel: () {
+        projectProvider.deleteProject();
+      },
+      onPressSave: () {
+        projectProvider.doDeleteProject();
+      },
     );
   }
 }

@@ -39,22 +39,16 @@ class ProjectController {
             data: form,
           );
 
-      Project project = Project.fromJson(response);
-
-      return project;
+      return Project.fromJson(response);
     } catch (e) {
       rethrow;
     }
   }
 
   Future<Project> doDelete(String uuid) async {
-    try{
-
-      final response = await this._projectService.delete(
-        urlParam: ''
-      );
-
-    }catch(e){
+    try {
+      final response = await this._projectService.delete(urlParam: '');
+    } catch (e) {
       rethrow;
     }
   }

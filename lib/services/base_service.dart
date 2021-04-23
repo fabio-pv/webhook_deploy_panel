@@ -41,16 +41,28 @@ abstract class BaseService {
     return endpointOnMethod;
   }
 
+  void _setToken({
+    bool auth = true,
+  }) async {
+    if (!auth) {
+      return;
+    }
+
+    Token token = await AuthService.getToken();
+
+    this._baseOptions.headers = {
+      "Authorization": "Bearer ${token.accessToken}"
+    };
+  }
+
   Future<dynamic> get({
     String endpoint,
     bool auth = true,
   }) async {
     try {
-      Token token = await AuthService.getToken();
-
-      this._baseOptions.headers = {
-        "Authorization": "Bearer ${token.accessToken}"
-      };
+      await this._setToken(
+        auth: auth,
+      );
 
       final response = await this._dio.get(
             this._getEndpoint(
@@ -70,6 +82,10 @@ abstract class BaseService {
     bool auth = true,
   }) async {
     try {
+      await this._setToken(
+        auth: auth,
+      );
+
       Response response = await this._dio.post(
             this._getEndpoint(
               endpointOnMethod: endpoint,
@@ -96,7 +112,6 @@ abstract class BaseService {
               urlParam: urlParam,
             ),
           );
-
       return response.data;
     } catch (e) {
       rethrow;

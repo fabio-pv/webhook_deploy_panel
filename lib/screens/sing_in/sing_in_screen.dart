@@ -41,6 +41,7 @@ class _SingInScreenState extends State<SingInScreen> {
       setState(() {
         this._inLoad = false;
       });
+      rethrow;
     }
   }
 

@@ -7,6 +7,7 @@ class ActionItemListProject extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final projectProvider = ProjectProvider.of(context);
+    final itemListProjectProvider = ItemListProjectProvider.of(context);
 
     return Container(
       width: double.maxFinite,
