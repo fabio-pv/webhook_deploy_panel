@@ -32,10 +32,18 @@ abstract class BaseService {
 
   String _getEndpoint({
     String endpointOnMethod,
-    String urlParam = '',
+    String urlParam,
   }) {
+    if (urlParam != null) {
+      urlParam = '/' + urlParam;
+    }
+
+    if (urlParam == null) {
+      urlParam = '';
+    }
+
     if (endpointOnMethod == null) {
-      return this.baseEndpoint;
+      return this.baseEndpoint + urlParam;
     }
 
     return endpointOnMethod;

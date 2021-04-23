@@ -47,7 +47,9 @@ class ProjectController {
 
   Future<Project> doDelete(String uuid) async {
     try {
-      final response = await this._projectService.delete(urlParam: '');
+      final response = await this._projectService.delete(
+            urlParam: uuid,
+          );
     } catch (e) {
       rethrow;
     }

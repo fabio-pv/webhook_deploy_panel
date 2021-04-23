@@ -71,9 +71,14 @@ class _ProjectScreenState extends State<ProjectScreen> {
     });
   }
 
-  Future<void> _doDeleteProject() {
-    print('_doDeleteProject');
-    print(this._selectProject);
+  Future<void> _doDeleteProject() async {
+    try {
+      await this.projectController.doDelete(this._selectProject);
+      this._deleteProject();
+      this._load();
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
