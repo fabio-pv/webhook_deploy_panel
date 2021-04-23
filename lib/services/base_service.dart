@@ -30,6 +30,17 @@ abstract class BaseService {
     this._dio = new Dio(this._baseOptions);
   }
 
+  String _getEndpoint({
+    String endpointOnMethod,
+    String urlParam = '',
+  }) {
+    if (endpointOnMethod == null) {
+      return this.baseEndpoint;
+    }
+
+    return endpointOnMethod;
+  }
+
   Future<dynamic> get({
     String endpoint,
     bool auth = true,
@@ -42,7 +53,9 @@ abstract class BaseService {
       };
 
       final response = await this._dio.get(
-            this._getEndpoint(endpoint),
+            this._getEndpoint(
+              endpointOnMethod: endpoint,
+            ),
           );
 
       return response.data;
@@ -58,7 +71,9 @@ abstract class BaseService {
   }) async {
     try {
       Response response = await this._dio.post(
-            this._getEndpoint(endpoint),
+            this._getEndpoint(
+              endpointOnMethod: endpoint,
+            ),
             data: data,
           );
 
@@ -68,11 +83,23 @@ abstract class BaseService {
     }
   }
 
-  String _getEndpoint(String endpointOnMethod) {
-    if (endpointOnMethod == null) {
-      return this.baseEndpoint;
-    }
+  Future<dynamic> delete({
+    String endpoint,
+    String urlParam,
+    Object data,
+    bool auth = true,
+  }) async {
+    try {
+      Response response = await this._dio.delete(
+            this._getEndpoint(
+              endpointOnMethod: endpoint,
+              urlParam: urlParam,
+            ),
+          );
 
-    return endpointOnMethod;
+      return response.data;
+    } catch (e) {
+      rethrow;
+    }
   }
 }
