@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:webhook_deploy_panel/providers/super_provider.dart';
 import 'package:webhook_deploy_panel/screens/project/project_screen.dart';
+import 'package:webhook_deploy_panel/screens/repository/repository_screen.dart';
 import 'package:webhook_deploy_panel/screens/sing_in/sing_in_screen.dart';
 
 void main() {
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         routes: {
           SingInScreen.ROUTE: (context) => SingInScreen(),
           ProjectScreen.ROUTE: (context) => ProjectScreen(),
+          RepositoryScreen.ROUTE: (context) => RepositoryScreen(),
         },
       ),
     );
