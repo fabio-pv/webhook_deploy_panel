@@ -107,6 +107,31 @@ abstract class BaseService {
     }
   }
 
+  Future<dynamic> patch({
+    String endpoint,
+    String urlParam,
+    Object data,
+    bool auth = true,
+  }) async {
+    try {
+      await this._setToken(
+        auth: auth,
+      );
+
+      Response response = await this._dio.patch(
+        this._getEndpoint(
+          endpointOnMethod: endpoint,
+          urlParam: urlParam,
+        ),
+        data: data,
+      );
+
+      return response.data;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<dynamic> delete({
     String endpoint,
     String urlParam,

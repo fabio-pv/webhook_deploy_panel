@@ -17,14 +17,15 @@ class _ContentModalProjectState extends State<ContentModalProject> {
     bool update = false,
     Project object,
   }) {
-    this._formKey.currentState.setInternalFieldValue('uuid', object.uuid);
     final form = this._formKey.currentState;
     if (!form.saveAndValidate()) {
       return;
     }
 
     if (update) {
+      form.setInternalFieldValue('uuid', object.uuid);
       ProjectProvider.of(context).doUpdateProject(form.value, object);
+      return;
     }
 
     ProjectProvider.of(context).doCreateProject(form.value);

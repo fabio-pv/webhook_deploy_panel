@@ -72,8 +72,16 @@ class _ProjectScreenState extends State<ProjectScreen> {
     });
   }
 
-  Future<void> _doUpdateProject(Object form, Project project) {
-    try {} catch (e) {
+  Future<void> _doUpdateProject(Object form, Project project) async {
+    try {
+      await this.projectController.doUpdate(
+            form,
+            project.uuid,
+          );
+
+      this._updateProject();
+      this._load();
+    } catch (e) {
       rethrow;
     }
   }

@@ -45,6 +45,19 @@ class ProjectController {
     }
   }
 
+  Future<Project> doUpdate(Object form, String uuid) async {
+    try {
+      final response = await this._projectService.patch(
+            urlParam: uuid,
+            data: form,
+          );
+
+      return Project.fromJson(response);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<Project> doDelete(String uuid) async {
     try {
       final response = await this._projectService.delete(
