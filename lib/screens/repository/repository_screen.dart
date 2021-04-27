@@ -7,7 +7,10 @@ class RepositoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseScreenWidget(
-      pageName: 'Repositories',
+      pageName: [
+        'Projects',
+        'Repositories',
+      ],
       body: Container(),
     );
   }

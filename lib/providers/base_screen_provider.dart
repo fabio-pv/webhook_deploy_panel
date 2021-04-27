@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BaseScreenProvider extends InheritedWidget {
-  final String pageName;
+  final List<String> pageName;
   final bool openModal;
   final Widget contentModal;
   final bool openAlertModal;

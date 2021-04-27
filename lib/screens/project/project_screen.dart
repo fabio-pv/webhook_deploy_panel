@@ -116,7 +116,9 @@ class _ProjectScreenState extends State<ProjectScreen> {
       deleteProject: this._deleteProject,
       doDeleteProject: this._doDeleteProject,
       child: BaseScreenWidget(
-        pageName: 'Projects',
+        pageName: [
+          'Projects'
+        ],
         floatingActionButtonPress: this._addProject,
         openModal: this._openModal,
         contentModal: ContentModalProject(),

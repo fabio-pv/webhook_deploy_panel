@@ -17,7 +17,7 @@ class BaseScreenWidget extends StatelessWidget {
   );
 
   final Widget body;
-  final String pageName;
+  final List<String> pageName;
   final EdgeInsets paddingBody;
   final bool removeAppbar;
   final Function floatingActionButtonPress;
@@ -29,7 +29,7 @@ class BaseScreenWidget extends StatelessWidget {
 
   BaseScreenWidget({
     @required this.body,
-    this.pageName = '???',
+    this.pageName,
     this.paddingBody = defaultPaddingBody,
     this.removeAppbar = false,
     this.floatingActionButtonPress,
