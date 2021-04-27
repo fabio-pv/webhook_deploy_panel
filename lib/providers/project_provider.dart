@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:webhook_deploy_panel/models/project.dart';
 
 class ProjectProvider extends InheritedWidget {
+  final Project selectProject;
   final Function addProject;
   final Function(Object) doCreateProject;
-  final Function({String uuid}) deleteProject;
+  final Function({Project project}) updateProject;
+  final Function(Object, Project) doUpdateProject;
+  final Function({Project project}) deleteProject;
   final Function doDeleteProject;
 
   ProjectProvider({
     @required Widget child,
+    this.selectProject,
     this.doCreateProject,
     this.addProject,
     this.deleteProject,
     this.doDeleteProject,
+    this.updateProject,
+    this.doUpdateProject,
   }) : super(child: child);
 
   @override

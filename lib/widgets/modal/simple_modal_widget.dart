@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:webhook_deploy_panel/widgets/button_default/button_default_widget.dart';
 import 'package:webhook_deploy_panel/widgets/flat_button_default/flat_button_default_widget.dart';
-import 'package:webhook_deploy_panel/widgets/typography_default/sub_title_typography_default.dart';
 import 'package:webhook_deploy_panel/widgets/typography_default/title_typography_default.dart';
 
 class SimpleModalWidget extends StatelessWidget {
@@ -9,12 +8,14 @@ class SimpleModalWidget extends StatelessWidget {
   final Function closeModal;
   final Function onPressSave;
   final Function onPressCancel;
+  final Object objectUpdate;
 
   SimpleModalWidget({
     @required this.child,
     this.closeModal,
     this.onPressSave,
     this.onPressCancel,
+    this.objectUpdate,
   });
 
   @override
@@ -69,13 +70,27 @@ class SimpleModalWidget extends StatelessWidget {
               SizedBox(
                 width: 20,
               ),
-              Container(
-                width: 100,
-                child: ButtonDefaultWidget(
-                  text: 'Save',
-                  onPressed: this.onPressSave,
+              if (this.objectUpdate == null) ...[
+                Container(
+                  width: 100,
+                  child: ButtonDefaultWidget(
+                    text: 'Save',
+                    onPressed: () => this.onPressSave(),
+                  ),
                 ),
-              ),
+              ],
+              if (this.objectUpdate != null) ...[
+                Container(
+                  width: 100,
+                  child: ButtonDefaultWidget(
+                    text: 'Update',
+                    onPressed: () => this.onPressSave(
+                      update: true,
+                      object: this.objectUpdate,
+                    ),
+                  ),
+                ),
+              ],
             ],
           ),
         ],

@@ -21,13 +21,15 @@ class ActionItemListProject extends StatelessWidget {
           ),
           IconButtonSmallDefaultWidget(
             tooltip: 'Edit',
-            onPressed: () {},
+            onPressed: () => projectProvider.updateProject(
+              project: itemListProjectProvider.project,
+            ),
             icon: Icons.edit,
           ),
           IconButtonSmallDefaultWidget(
             tooltip: 'Delete',
             onPressed: () => projectProvider.deleteProject(
-              uuid: ItemListProjectProvider.of(context).project.uuid,
+              project: itemListProjectProvider.project,
             ),
             icon: Icons.delete,
           ),

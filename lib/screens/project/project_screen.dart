@@ -27,7 +27,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
   List<Project> _listProject = [];
   bool _openModal = false;
   bool _openAlertModal = false;
-  String _selectProject;
+  Project _selectProject;
 
   @override
   void initState() {
@@ -50,12 +50,13 @@ class _ProjectScreenState extends State<ProjectScreen> {
   void _addProject() {
     setState(() {
       this._openModal = !this._openModal;
+      this._selectProject = null;
     });
   }
 
   Future<void> _doCreateProject(Object form) async {
     try {
-      Project project = await this.projectController.doCreate(form);
+      await this.projectController.doCreate(form);
 
       this._addProject();
       this._load();
@@ -64,16 +65,31 @@ class _ProjectScreenState extends State<ProjectScreen> {
     }
   }
 
-  void _deleteProject({String uuid}) {
+  void _updateProject({Project project}) {
+    setState(() {
+      this._openModal = !this._openModal;
+      this._selectProject = project;
+    });
+  }
+
+  Future<void> _doUpdateProject(Object form, Project project) {
+    try {} catch (e) {
+      rethrow;
+    }
+  }
+
+  void _deleteProject({Project project}) {
     setState(() {
       this._openAlertModal = !this._openAlertModal;
-      this._selectProject = uuid;
+      this._selectProject = project;
     });
   }
 
   Future<void> _doDeleteProject() async {
     try {
-      await this.projectController.doDelete(this._selectProject);
+      await this.projectController.doDelete(
+            this._selectProject.uuid,
+          );
       this._deleteProject();
       this._load();
     } catch (e) {
@@ -84,8 +100,11 @@ class _ProjectScreenState extends State<ProjectScreen> {
   @override
   Widget build(BuildContext context) {
     return ProjectProvider(
+      selectProject: this._selectProject,
       addProject: this._addProject,
       doCreateProject: this._doCreateProject,
+      updateProject: this._updateProject,
+      doUpdateProject: this._doUpdateProject,
       deleteProject: this._deleteProject,
       doDeleteProject: this._doDeleteProject,
       child: BaseScreenWidget(
