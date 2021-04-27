@@ -3,28 +3,29 @@ import 'package:webhook_deploy_panel/providers/base_screen_provider.dart';
 import 'package:webhook_deploy_panel/widgets/typography_default/header_title_typography_default.dart';
 
 class TitleHeaderWidget extends StatelessWidget {
-  BuildContext _contextAux;
-
-  List<Widget> _make() {
-    List<Widget> widgets = [];
-
-    BaseScreenProvider.of(this._contextAux).pageName.forEach((element) {
-      widgets.add(HeaderSubTitleTypographyDefault(
-        title: element,
-      ));
-    });
-
-    return widgets;
-  }
-
   @override
   Widget build(BuildContext context) {
-    this._contextAux = context;
+    final pageName = BaseScreenProvider.of(context).pageName;
 
-    return Container(
-      child: Row(
-        children: this._make(),
-      ),
+    return ListView.separated(
+      shrinkWrap: true,
+      itemCount: pageName.length,
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (context, int) {
+        return Center(
+          child: HeaderSubTitleTypographyDefault(
+            title: pageName[int],
+          ),
+        );
+      },
+      separatorBuilder: (context, int) {
+        return Center(
+          child: Icon(
+            Icons.chevron_right,
+            color: Theme.of(context).primaryColor,
+          ),
+        );
+      },
     );
   }
 }

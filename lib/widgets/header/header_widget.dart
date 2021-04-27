@@ -13,6 +13,7 @@ class HeaderWidget extends StatelessWidget implements PreferredSizeWidget {
         padding: EdgeInsets.all(10.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             MenuButtonHeaderWidget(),
             TitleHeaderWidget(),
