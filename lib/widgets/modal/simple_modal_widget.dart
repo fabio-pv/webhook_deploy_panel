@@ -18,6 +18,14 @@ class SimpleModalWidget extends StatelessWidget {
     this.objectUpdate,
   });
 
+  String _getTitleModal() {
+    if (this.objectUpdate == null) {
+      return 'Create';
+    }
+
+    return 'Update';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,7 +42,7 @@ class SimpleModalWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TitleTypographyDefault(
-                title: 'Create',
+                title: this._getTitleModal(),
               ),
               IconButton(
                 padding: EdgeInsets.zero,
